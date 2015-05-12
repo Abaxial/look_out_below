@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Look Out Below</title>
+        <script src="./assets/square.js"></script>
+        <script src="./assets/game.js"></script>
+        <style>
+        body {
+          font-family: Arial, Helvetica, sans-serif;
+          padding: 10px; margin: 0;
+          background-color: #F8F7ED;
+          color: #423A33;
+        }
+        canvas {
+          border: solid 2px #000000;
+          background-color: #FFFFFF;
+        }
+
+        #outerContainer {
+          margin: auto;
+          width: 100%;
+          display: block;
+          height: 800px;
+          text-align: center;
+        }
+
+        #scoreboard {
+          width: 15%;
+          float: left;
+          text-align: center;
+        }
+
+        #gameboard {
+          width: 70%;
+          text-align: center;
+          float: left;
+        }
+
+        #scoreboard2 {
+          width:15%;
+          float: left;
+          text-align: center;
+        }
+
+        </style>
+    </head>
+    <body onload="TP.init()">
+      <span id='outerContainer'>
+        <h1>Area of Expertise</h1>
+
+        <section id='scoreboard'>
+          <h1 id='p1name'>Player 1</h1>
+          <h3 id='p1score'></h3>
+
+        </section>
+
+        <section id='gameboard'>
+          <canvas id="canvas" width="800" height="600">
+            <p>This is a canvas element.  I could put fallback image/something here.</p>
+          </canvas>
+        </section>
+
+
+        <section id='scoreboard2'>
+          <h1 id='p2name'>Player 2</h1>
+          <h3 id='p2score'></h3>
+        </section>
+      </span>
+    </body>
+</html>
