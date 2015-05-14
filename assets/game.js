@@ -1,8 +1,12 @@
 window.TP = {}
 
-Player = function() {
+Player = function(score_element, title_element) {
   this.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
   this.score = 0
+  title_element.style.color = this.color
+  this.update_score = function() {
+    score_element.textContent = this.score
+  }
 }
 
 
@@ -15,21 +19,14 @@ TP.init = function() {
   this.shapeList = []
   this.sizeLoop = true
   this.mousedownID = -1
-  var player1 = new Player()
-  var player2 = new Player()
+  var player1 = new Player(document.getElementById('p1score'), document.getElementById('p1name'))
+  var player2 = new Player(document.getElementById('p2score'), document.getElementById('p2name'))
+
+  player1.update_score()
+  player2.update_score()
 
   this.players = [player1, player2]
   this.activePlayer = 0
-
-  document.getElementById('p1name').style.color = player1.color
-  document.getElementById('p2name').style.color = player2.color
-
-  var p1Score = document.getElementById('p1score')
-  var p2Score = document.getElementById('p2score')
-
-  this.scores = [p1Score, p2Score]
-
-
 
   var removeClickedShape = function(x,y, shapeArray) {
     for (shape in shapeArray) {
@@ -55,7 +52,7 @@ TP.init = function() {
 
   canvas.onmousedown = function(e){
 
-    size = 4
+    size = 8
 
     if (clickedShape(e.offsetX, e.offsetY, self.shapeList).isConflict == true) {
 
@@ -78,10 +75,10 @@ TP.init = function() {
       } else if (size == 200 && shiftUp == true) {
         shiftUp = false
         TP.render()
-      } else if (size > 0 && shiftUp == false) {
+      } else if (size > 8 && shiftUp == false) {
         size = size - 2
         TP.render()
-      } else if (size == 0  && shiftUp == false) {
+      } else if (size == 8  && shiftUp == false) {
         shiftUp = true
       }
 
@@ -114,14 +111,13 @@ TP.init = function() {
       square.render()
       self.shapeList.push(square)
       TP.players[TP.activePlayer].score += (square.size * square.size)
-      TP.scores[TP.activePlayer].textContent = TP.players[TP.activePlayer].score
+      TP.players[TP.activePlayer].update_score()
     }
 
     removeClickedShape(e.offsetX, e.offsetY, self.shapeList)
     TP.render()
     TP.activePlayer = 1 - TP.activePlayer
   }
-
 }
 
 TP.render = function() {
