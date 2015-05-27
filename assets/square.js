@@ -20,12 +20,26 @@ Square.prototype.move = function(newX, newY) {
 }
 
 Square.prototype.conflict = function(shapeArray) {
-  for (shape in shapeArray) {
-    if (!(shapeArray[shape].x > (this.x + this.size) ||
-        (shapeArray[shape].x + shapeArray[shape].size) < this.x ||
-        shapeArray[shape].y > (this.y + this.size) ||
-        (shapeArray[shape].y + shapeArray[shape].size) < this.y)) {
+  for (item in shapeArray) {
+    var shape = shapeArray[item]
+    if (!(shape.x > (this.x + this.size) ||
+        (shape.x + shape.size) < this.x ||
+        shape.y > (this.y + this.size) ||
+        (shape.y + shape.size) < this.y)) {
           return true
+    }
+  }
+  return false
+}
+
+Square.prototype.wasClicked = function(clickedX, clickedY, shapeArray) {
+  for (item in shapeArray) {
+    var shape = shapeArray[item]
+    console.log([shape.x, clickedX, (shape.x + shape.size)])
+    if ((shape.x < clickedX && ( clickedX < (shape.x + shape.size))) &&
+        (shape.y < clickedY && (clickedY < (shape.y + shape.size))))
+    {
+      return true
     }
   }
   return false

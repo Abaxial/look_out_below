@@ -1,52 +1,28 @@
 window.TP = {}
 
-Player = function(score_element, title_element) {
-  this.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
-  this.score = 0
-  title_element.style.color = this.color
-  this.update_score = function() {
-    score_element.textContent = this.score
-  }
-}
-
-
 TP.init = function() {
   var self = this
+  // Set the variables for game object.
   this.canvas = document.getElementById('canvas')
   this.ctx = canvas.getContext('2d')
   this.width = canvas.width
   this.height = canvas.height
+
+  // Shapes on the canvas.
   this.shapeList = []
-  this.sizeLoop = true
+
+  // Used to only initiate mousedown loop once.
   this.mousedownID = -1
+
+  // Initialize 2 players.
   var player1 = new Player(document.getElementById('p1score'), document.getElementById('p1name'))
   var player2 = new Player(document.getElementById('p2score'), document.getElementById('p2name'))
-
   player1.update_score()
   player2.update_score()
 
+  //
   this.players = [player1, player2]
   this.activePlayer = 0
-
-  var removeClickedShape = function(x,y, shapeArray) {
-    for (shape in shapeArray) {
-      if ((shapeArray[shape].x < x && (shapeArray[shape].x + shapeArray[shape].size) > x ) &&
-           (shapeArray[shape].y < y && (shapeArray[shape].y + shapeArray[shape].size) > y ))
-        shapeArray.splice(shape, 1)
-    }
-  }
-
-  var clickedShape = function(x, y, shapeArray) {
-    var result = {isConflict: false, shapeIndex: null}
-
-    for (shape in shapeArray) {
-      if ((shapeArray[shape].x < x && (shapeArray[shape].x + shapeArray[shape].size) > x ) &&
-           (shapeArray[shape].y < y && (shapeArray[shape].y + shapeArray[shape].size) > y ))
-        result = {isConflict: true, shapeIndex: shape}
-    }
-
-    return result
-  }
 
   canvas.style.cursor = "pointer";
 
@@ -56,10 +32,12 @@ TP.init = function() {
 
     if (clickedShape(e.offsetX, e.offsetY, self.shapeList).isConflict == true) {
 
-    } else if (TP.mousedownID == -1) {  //Prevent multimple loops!
+    } else if (TP.mousedownID == -1) {  //Prevent multiple loops!
       TP.mousedownID = setInterval(whilemousedown, 2 /*execute every 100ms*/)
     }
-    var shiftUp = true
+
+    var growing = true
+
     tempSquare = new Square(e.offsetX, e.offsetY, size, self.ctx)
     function whilemousedown() {
       canvas.onmousemove = function(e) {
@@ -70,16 +48,16 @@ TP.init = function() {
           tempSquare.render()
         }
       }
-      if (size < 200 && shiftUp == true) {
+      if (size < 200 && growing == true) {
         size = size + 2
-      } else if (size == 200 && shiftUp == true) {
-        shiftUp = false
+      } else if (size == 200 && growing == true) {
+        growing = false
         TP.render()
-      } else if (size > 8 && shiftUp == false) {
+      } else if (size > 8 && growing == false) {
         size = size - 2
         TP.render()
-      } else if (size == 8  && shiftUp == false) {
-        shiftUp = true
+      } else if (size == 8  && growing == false) {
+        growing = true
       }
 
       tempSquare.size = size;
@@ -106,17 +84,25 @@ TP.init = function() {
       }
     }
 
+    if (square.size < 10) {
+      square.size = 10
+    }
+
     if (!square.conflict(self.shapeList)) {
       square.color = TP.players[TP.activePlayer].color
       square.render()
       self.shapeList.push(square)
       TP.players[TP.activePlayer].score += (square.size * square.size)
       TP.players[TP.activePlayer].update_score()
+      TP.activePlayer = 1 - TP.activePlayer
+    } else if (square.wasClicked(e.offsetX, e.offsetY, self.shapeList)) {
+      removeClickedShape(e.offsetX, e.offsetY, self.shapeList)
+      TP.activePlayer = 1 - TP.activePlayer
+    } else {
+      alert("Please try again, attempt too close to other shape.")
     }
 
-    removeClickedShape(e.offsetX, e.offsetY, self.shapeList)
     TP.render()
-    TP.activePlayer = 1 - TP.activePlayer
   }
 }
 
