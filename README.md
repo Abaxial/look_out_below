@@ -22,6 +22,25 @@ Game 1 [Area of Expertise](#game1)
 
 # Area of Expertise (Game 1)<a name="game1"></a>
 
+### May 28th, 2015
+
+* After some deliberation and conversation, Mocha with Chai and potentially eventually Sinon is the way I'm going.
+* Converting index to jade template for use with Node.
+
+### May 27th, 2015
+
+Largely refactoring today.  Trying to organize code better and refactor where I can.
+
+* Learned that 1 < 2 < 1 == true (Because 1 < 2 is evaulated first, then true < 1 is evaluated.)  It was a frustrating discovery, but I'm not sure where I got the idea I could chain things like that.  I beleive I've worked in a language that can do that at least once before.
+* Pulling things apart into more distinct groupings.  Player.  Square.  Util functions.
+* Squares will now recoil randomly back, but not below 10pixels.
+* Turns will only rotate if a valid click was established, not a click that does not achieve either a square removal, or square draw.
+
+Next Steps:
+
+* Want to get testing in place.  I have some material to read through to investigate my options for javascript testing.
+* Lets be realistic.  I think I'm going to set that as my next goal prior to my next update.
+
 ### May 14th, 2015
 
 On my initial passthrough of the Canvas element and experimenting with Javascript, I've built a small toy that will allow users to take turns drawing squares and getting points.
