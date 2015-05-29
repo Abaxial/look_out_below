@@ -2,14 +2,10 @@ doctype html
 html
 head
     title Look Out Below
-    script(src='/js/square.js')
-    script(src='/js/player.js')
-    script(src='/js/canvas_utils.js')
-    script(src='/js/game.js')
     style
       include ../assets/css/app.css
 
-  body(onload='TP.init()')
+  body(onload='game')
     span#outerContainer
       h1 Area of Expertise
       section#scoreboard

@@ -22,10 +22,19 @@ Game 1 [Area of Expertise](#game1)
 
 # Area of Expertise (Game 1)<a name="game1"></a>
 
+### May 29th, 2015
+
+* Really exercising the beginnings of node now.  Converting my javascript written thus far into a node module(s) to be accessed in that manner.
+* Hopefully not going the wrong way down a one way street.
+* Going the wrong way down a one way street.  Of course.  Node is server side and has no concept of DOM... and in this case shouldn't.
+* Need to segment my code such that Player, perhaps, is a module on the server side which client-side code interacts with to store game state, etc.  Game, even, can be a module, but the actual magic of drawing the game, the game runner, needs to happen on the client side.  There will, for example, be two players talking with each other across the web playing this game.
+* Time to dig in again.  Refactor again.  It's okay.
+
 ### May 28th, 2015
 
 * After some deliberation and conversation, Mocha with Chai and potentially eventually Sinon is the way I'm going.
 * Converting index to jade template for use with Node.
+* Arrange filestructure.  Assets folder creation.
 
 ### May 27th, 2015
 
