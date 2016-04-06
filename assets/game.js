@@ -112,4 +112,3 @@ TP.render = function() {
     this.shapeList[index].render()
   }
 }
-
