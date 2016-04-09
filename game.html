@@ -2,10 +2,8 @@
 <html>
     <head>
         <title>Look Out Below</title>
-        <script src="./assets/square.js"></script>
-        <script src="./assets/player.js"></script>
-        <script src="./assets/canvas_utils.js"></script>
-        <script src="./assets/game.js"></script>
+          <script src="./assets/game.js"></script>
+          <script src="./lib/konva.min.js"></script>
         <style>
         body {
           font-family: Arial, Helvetica, sans-serif;
@@ -46,26 +44,27 @@
 
         </style>
     </head>
-    <body onload="TP.init()">
+    <body onload="Game.init()">
       <span id='outerContainer'>
-        <h1>Area of Expertise</h1>
-
+        <!-- <h1>Area of Expertise</h1> -->
+        <br />
+        <br />
+        <br />
+        <br />
         <section id='scoreboard'>
-          <h1 id='p1name'>Player 1</h1>
-          <h3 id='p1score'></h3>
-
+          <!-- <h1 id='p1name'>Player 1</h1>
+          <h3 id='p1score'></h3> -->
+          <br />
         </section>
 
         <section id='gameboard'>
-          <canvas id="canvas" width="800" height="600">
-            <p>This is a canvas element.  I could put fallback image/something here.</p>
-          </canvas>
         </section>
 
 
         <section id='scoreboard2'>
-          <h1 id='p2name'>Player 2</h1>
-          <h3 id='p2score'></h3>
+          <!-- <h1 id='p2name'>Player 2</h1>
+          <h3 id='p2score'></h3> -->
+          <br />
         </section>
       </span>
     </body>
