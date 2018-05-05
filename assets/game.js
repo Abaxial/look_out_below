@@ -15,8 +15,8 @@ TP.init = function() {
   this.mousedownID = -1
 
   // Initialize 2 players.
-  var player1 = new Player(document.getElementById('p1score'), document.getElementById('p1name'))
-  var player2 = new Player(document.getElementById('p2score'), document.getElementById('p2name'))
+  var player1 = new Player(document.getElementById('p1score'), document.getElementById('p1name'), document.getElementById('p1Turns'))
+  var player2 = new Player(document.getElementById('p2score'), document.getElementById('p2name'), document.getElementById('p2Turns'))
   player1.update_score()
   player2.update_score()
 
@@ -48,13 +48,15 @@ TP.init = function() {
           tempSquare.render()
         }
       }
-      if (size < 200 && growing == true) {
-        size = size + 2
+      if (tempSquare.x + size > canvas.width || tempSquare.y + size > canvas.height) {
+        size = size - Math.floor(Math.random() * size)
+      } else if (size < 200 && growing == true) {
+        size = size + 8
       } else if (size == 200 && growing == true) {
         growing = false
         TP.render()
       } else if (size > 8 && growing == false) {
-        size = size - 2
+        size = size - 8
         TP.render()
       } else if (size == 8  && growing == false) {
         growing = true
@@ -94,10 +96,14 @@ TP.init = function() {
       self.shapeList.push(square)
       TP.players[TP.activePlayer].score += (square.size * square.size)
       TP.players[TP.activePlayer].update_score()
+      TP.players[TP.activePlayer].update_turns()
       TP.activePlayer = 1 - TP.activePlayer
-    } else if (square.wasClicked(e.offsetX, e.offsetY, self.shapeList)) {
+    } else if (shape = square.wasClicked(e.offsetX, e.offsetY, self.shapeList)) {    
+      TP.players[TP.activePlayer].update_turns()  
+      TP.activePlayer = 1 - TP.activePlayer      
+      TP.players[TP.activePlayer].score -= (shape.size * shape.size)
+      TP.players[TP.activePlayer].update_score()
       removeClickedShape(e.offsetX, e.offsetY, self.shapeList)
-      TP.activePlayer = 1 - TP.activePlayer
     } else {
       alert("Please try again, attempt too close to other shape.")
     }

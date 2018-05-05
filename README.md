@@ -39,3 +39,12 @@ Next Steps:
 * Wins tracking.
 * Square explodes if drawn over 100px x 100px by increasing chance of explosion up to 60% chance at 200px, then up to 80% chance between 200 and 250px, then shrinks again.
 * Better code compartmentalization.  Explore slow learning of code structure in Javascript.  Things are too tangly right now.
+
+### May 15th -> Present
+
+* Got married, had two children, continued to grow in my career.
+
+### April 24th, 2018
+
+* Getting re-acquainted with javascript.  
+* Looking to complete some of the above requirements while becoming re-acquainted.

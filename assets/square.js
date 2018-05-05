@@ -34,12 +34,11 @@ Square.prototype.conflict = function(shapeArray) {
 
 Square.prototype.wasClicked = function(clickedX, clickedY, shapeArray) {
   for (item in shapeArray) {
-    var shape = shapeArray[item]
-    console.log([shape.x, clickedX, (shape.x + shape.size)])
+    var shape = shapeArray[item]    
     if ((shape.x < clickedX && ( clickedX < (shape.x + shape.size))) &&
         (shape.y < clickedY && (clickedY < (shape.y + shape.size))))
     {
-      return true
+      return shape
     }
   }
   return false
