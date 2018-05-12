@@ -1,9 +1,13 @@
-Square = function(x, y, size, ctx) {
+Square = function(x, y, size, ctx, scoreElement) {
   this.x = x
   this.y = y
   this.size = size
   this.ctx = ctx
   this.color = '#' + Math.floor(Math.random() * 16777215).toString(16)
+  this.scoreElement = scoreElement
+  if (scoreElement) {
+    console.log(scoreElement)
+  }
 }
 
 Square.prototype.render = function(){
@@ -20,7 +24,7 @@ Square.prototype.move = function(newX, newY) {
 }
 
 Square.prototype.conflict = function(shapeArray) {
-  for (item in shapeArray) {
+  for (var item in shapeArray) {
     var shape = shapeArray[item]
     if (!(shape.x > (this.x + this.size) ||
         (shape.x + shape.size) < this.x ||
@@ -33,7 +37,7 @@ Square.prototype.conflict = function(shapeArray) {
 }
 
 Square.prototype.wasClicked = function(clickedX, clickedY, shapeArray) {
-  for (item in shapeArray) {
+  for (var item in shapeArray) {
     var shape = shapeArray[item]    
     if ((shape.x < clickedX && ( clickedX < (shape.x + shape.size))) &&
         (shape.y < clickedY && (clickedY < (shape.y + shape.size))))

@@ -75,8 +75,7 @@ TP.init = function() {
       clearInterval(TP.mousedownID);
       TP.mousedownID = -1
     }
-
-    var square = new Square(e.offsetX, e.offsetY, size, self.ctx)
+    var square = new Square(e.offsetX, e.offsetY, size, self.ctx, TP.players[TP.activePlayer].scoreElement)
 
     while (square.size > 10) {
       if (square.conflict(self.shapeList)) {
@@ -100,10 +99,8 @@ TP.init = function() {
       TP.activePlayer = 1 - TP.activePlayer
     } else if (shape = square.wasClicked(e.offsetX, e.offsetY, self.shapeList)) {    
       TP.players[TP.activePlayer].update_turns()  
-      TP.activePlayer = 1 - TP.activePlayer      
-      TP.players[TP.activePlayer].score -= (shape.size * shape.size)
-      TP.players[TP.activePlayer].update_score()
       removeClickedShape(e.offsetX, e.offsetY, self.shapeList)
+      TP.activePlayer = 1 - TP.activePlayer
     } else {
       alert("Please try again, attempt too close to other shape.")
     }
@@ -114,7 +111,7 @@ TP.init = function() {
 
 TP.render = function() {
   this.ctx.clearRect(0,0,this.width,this.height)
-  for(index in this.shapeList) {
+  for(var index in this.shapeList) {
     this.shapeList[index].render()
   }
 }

@@ -1,7 +1,8 @@
-Player = function(scoreElement, titleElement, turnsElement) {
+ Player = function(scoreElement, titleElement, turnsElement) {
   this.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
   this.score = 0
   this.turnsRemaining = 10
+  this.scoreElement = scoreElement
   titleElement.style.color = this.color
   turnsElement.textContent = this.turnsRemaining
   this.update_score = function() {    
