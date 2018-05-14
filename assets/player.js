@@ -7,7 +7,7 @@
   titleElement.style.color = this.color
   turnsElement.textContent = this.turnsRemaining
   this.updateScore = function() {
-    scoreElement.textContent = this.score    
+    scoreElement.textContent = this.score
   }
   this.update_turns = function() {
     this.turnsRemaining = this.turnsRemaining - 1

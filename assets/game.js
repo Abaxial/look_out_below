@@ -98,8 +98,8 @@ TP.init = function() {
       TP.players[TP.activePlayer].updateScore()
       TP.players[TP.activePlayer].update_turns()
       TP.activePlayer = 1 - TP.activePlayer
-    } else if (shape = square.wasClicked(e.offsetX, e.offsetY, self.shapeList)) {    
-      TP.players[TP.activePlayer].update_turns()  
+    } else if (shape = square.wasClicked(e.offsetX, e.offsetY, self.shapeList)) {
+      TP.players[TP.activePlayer].update_turns()
       removeClickedShape(e.offsetX, e.offsetY, self.shapeList)
       TP.players[0].updateScore()
       TP.players[1].updateScore()
