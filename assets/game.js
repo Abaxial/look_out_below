@@ -17,8 +17,8 @@ TP.init = function() {
   // Initialize 2 players.
   var player1 = new Player(document.getElementById('p1score'), document.getElementById('p1name'), document.getElementById('p1Turns'))
   var player2 = new Player(document.getElementById('p2score'), document.getElementById('p2name'), document.getElementById('p2Turns'))
-  player1.update_score()
-  player2.update_score()
+  player1.updateScore()
+  player2.updateScore()
 
   //
   this.players = [player1, player2]
@@ -31,7 +31,8 @@ TP.init = function() {
     size = 8
 
     if (clickedShape(e.offsetX, e.offsetY, self.shapeList).isConflict == true) {
-
+      // Captures and prevents forward motion through loop if an
+      // existing shape is clicked.
     } else if (TP.mousedownID == -1) {  //Prevent multiple loops!
       TP.mousedownID = setInterval(whilemousedown, 2 /*execute every 100ms*/)
     }
@@ -71,11 +72,11 @@ TP.init = function() {
   canvas.onmouseup = function(e) {
     TP.render()
 
-    if(TP.mousedownID != -1) {
+    if (TP.mousedownID != -1) {
       clearInterval(TP.mousedownID);
       TP.mousedownID = -1
     }
-    var square = new Square(e.offsetX, e.offsetY, size, self.ctx, TP.players[TP.activePlayer].scoreElement)
+    var square = new Square(e.offsetX, e.offsetY, size, self.ctx, TP.players[TP.activePlayer])
 
     while (square.size > 10) {
       if (square.conflict(self.shapeList)) {
@@ -94,18 +95,49 @@ TP.init = function() {
       square.render()
       self.shapeList.push(square)
       TP.players[TP.activePlayer].score += (square.size * square.size)
-      TP.players[TP.activePlayer].update_score()
+      TP.players[TP.activePlayer].updateScore()
       TP.players[TP.activePlayer].update_turns()
       TP.activePlayer = 1 - TP.activePlayer
     } else if (shape = square.wasClicked(e.offsetX, e.offsetY, self.shapeList)) {    
       TP.players[TP.activePlayer].update_turns()  
       removeClickedShape(e.offsetX, e.offsetY, self.shapeList)
+      TP.players[0].updateScore()
+      TP.players[1].updateScore()
       TP.activePlayer = 1 - TP.activePlayer
     } else {
       alert("Please try again, attempt too close to other shape.")
     }
 
     TP.render()
+
+    if (TP.players[TP.activePlayer].turnsRemaining == 0)  {
+
+      if (TP.players[TP.activePlayer].score > TP.players[1 - TP.activePlayer].score) {
+        TP.players[TP.activePlayer].wins += 1
+      } else if (TP.players[1 - TP.activePlayer].score > TP.players[TP.activePlayer].score) {
+        TP.players[1 - TP.activePlayer].wins += 1
+      } else {
+        alert("Tie!")
+      }
+
+      TP.players[TP.activePlayer].score = 0
+      TP.players[1 - TP.activePlayer].score = 0
+
+      TP.players[TP.activePlayer].turnsRemaining = 10
+      TP.players[1 - TP.activePlayer].turnsRemaining = 10
+
+      TP.shapeList = []
+      player1.updateScore()
+      player2.updateScore()
+
+      if (TP.players[TP.activePlayer].wins == 5) {
+        alert("Player 2 Wins!")
+      } else if (TP.players[1 - TP.activePlayer].wins == 5) {
+        alert("Player 1 Wins!")
+      }
+
+      TP.render()
+    }
   }
 }
 

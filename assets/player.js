@@ -3,9 +3,10 @@
   this.score = 0
   this.turnsRemaining = 10
   this.scoreElement = scoreElement
+  this.wins = 0
   titleElement.style.color = this.color
   turnsElement.textContent = this.turnsRemaining
-  this.update_score = function() {    
+  this.updateScore = function() {
     scoreElement.textContent = this.score    
   }
   this.update_turns = function() {

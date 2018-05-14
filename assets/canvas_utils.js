@@ -1,9 +1,9 @@
 var removeClickedShape = function(x,y, shapeArray) {
   for (var shape in shapeArray) {
     if ((shapeArray[shape].x < x && (shapeArray[shape].x + shapeArray[shape].size) > x ) && (shapeArray[shape].y < y && (shapeArray[shape].y + shapeArray[shape].size) > y )) {
-        console.log("removing score and shape")
-        console.log(shapeArray[shape])
-        shapeArray[shape].scoreElement.textContent = shapeArray[shape].scoreElement.textContent - (shapeArray[shape].size * shapeArray[shape].size)
+        // The problem here is that I'm updating the score element, but not the player score itself.
+        // This really needs to be the player that gets attached to the shape in the array.  A stamp of ownership, for example.
+        shapeArray[shape].player.score = shapeArray[shape].player.score - (shapeArray[shape].size * shapeArray[shape].size)
         shapeArray.splice(shape, 1)        
     }
   }

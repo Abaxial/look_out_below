@@ -1,13 +1,10 @@
-Square = function(x, y, size, ctx, scoreElement) {
+Square = function(x, y, size, ctx, player) {
   this.x = x
   this.y = y
   this.size = size
   this.ctx = ctx
   this.color = '#' + Math.floor(Math.random() * 16777215).toString(16)
-  this.scoreElement = scoreElement
-  if (scoreElement) {
-    console.log(scoreElement)
-  }
+  this.player = player
 }
 
 Square.prototype.render = function(){
