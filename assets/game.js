@@ -50,7 +50,8 @@ TP.init = function() {
         }
       }
       if (tempSquare.x + size > canvas.width || tempSquare.y + size > canvas.height) {
-        size = size - Math.floor(Math.random() * size)
+        size = size - 8
+        growing = false
       } else if (size < 200 && growing == true) {
         size = size + 8
       } else if (size == 200 && growing == true) {

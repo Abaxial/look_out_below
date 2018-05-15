@@ -35,7 +35,7 @@ Square.prototype.conflict = function(shapeArray) {
 
 Square.prototype.wasClicked = function(clickedX, clickedY, shapeArray) {
   for (var item in shapeArray) {
-    var shape = shapeArray[item]    
+    var shape = shapeArray[item]
     if ((shape.x < clickedX && ( clickedX < (shape.x + shape.size))) &&
         (shape.y < clickedY && (clickedY < (shape.y + shape.size))))
     {
