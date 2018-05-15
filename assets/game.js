@@ -15,10 +15,13 @@ TP.init = function() {
   this.mousedownID = -1
 
   // Initialize 2 players.
-  var player1 = new Player(document.getElementById('p1score'), document.getElementById('p1name'), document.getElementById('p1Turns'))
-  var player2 = new Player(document.getElementById('p2score'), document.getElementById('p2name'), document.getElementById('p2Turns'))
+  var player1 = new Player(document.getElementById('p1Score'), document.getElementById('p1Name'), document.getElementById('p1Turns'), document.getElementById('p1Wins'))
+  var player2 = new Player(document.getElementById('p2Score'), document.getElementById('p2Name'), document.getElementById('p2Turns'), document.getElementById('p2Wins'))
   player1.updateScore()
+  player1.winsElement.textContent = 0
   player2.updateScore()
+  player2.winsElement.textContent = 0
+
 
   //
   this.players = [player1, player2]
@@ -115,8 +118,10 @@ TP.init = function() {
 
       if (TP.players[TP.activePlayer].score > TP.players[1 - TP.activePlayer].score) {
         TP.players[TP.activePlayer].wins += 1
+        TP.players[TP.activePlayer].winsElement.textContent = TP.players[TP.activePlayer].wins
       } else if (TP.players[1 - TP.activePlayer].score > TP.players[TP.activePlayer].score) {
         TP.players[1 - TP.activePlayer].wins += 1
+        TP.players[1 - TP.activePlayer].winsElement.textContent = TP.players[1 - TP.activePlayer].wins
       } else {
         alert("Tie!")
       }
@@ -124,8 +129,8 @@ TP.init = function() {
       TP.players[TP.activePlayer].score = 0
       TP.players[1 - TP.activePlayer].score = 0
 
-      TP.players[TP.activePlayer].turnsRemaining = 10
-      TP.players[1 - TP.activePlayer].turnsRemaining = 10
+      TP.players[TP.activePlayer].turnsRemaining = 2
+      TP.players[1 - TP.activePlayer].turnsRemaining = 2
 
       TP.shapeList = []
       player1.updateScore()
