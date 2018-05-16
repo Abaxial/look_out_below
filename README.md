@@ -40,7 +40,7 @@ Next Steps:
 * Square explodes if drawn over 100px x 100px by increasing chance of explosion up to 60% chance at 200px, then up to 80% chance between 200 and 250px, then shrinks again.
 * Better code compartmentalization.  Explore slow learning of code structure in Javascript.  Things are too tangly right now.
 
-### May 15th -> April 23rd
+### May 15th, 2015 -> April 23rd, 2018
 
 * Got married, had two children, bought a property out of the city, started working remotely.
 
