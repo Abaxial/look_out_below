@@ -40,11 +40,29 @@ Next Steps:
 * Square explodes if drawn over 100px x 100px by increasing chance of explosion up to 60% chance at 200px, then up to 80% chance between 200 and 250px, then shrinks again.
 * Better code compartmentalization.  Explore slow learning of code structure in Javascript.  Things are too tangly right now.
 
-### May 15th -> Present
+### May 15th -> April 23rd
 
-* Got married, had two children, continued to grow in my career.
+* Got married, had two children, bought a property out of the city, started working remotely.
 
 ### April 24th, 2018
 
-* Getting re-acquainted with javascript.  
+* Getting re-acquainted with javascript.
 * Looking to complete some of the above requirements while becoming re-acquainted.
+
+### May 15th, 2018
+
+* The game is now more or less complete.  It sets two people against each other in an epic battle for surface area dominance.
+* Choose to build a square, or remove one from the board.
+* Limited number of turns per game.  First to 5 wins wins the set.
+
+#### Next Steps
+
+* Well,  the codebase feels like a hot mess.  It does what I want it to, but is such a mess of structure my next step is to refactor.
+* Need to first map out where features should end up belonging, one of three 'domains'.
+    * Player
+    * Gameboard
+    * Square
+* Convert to ES6, this will require reading up on ES6 changes.  Tap into the readability.
+* Add tests to test functionality.  Essentially testing state of board, player, or square at any given time before and after actions.
+* Need to learn about testing javascript.  There is a mountain of possibilities to use as examples in github.
+* Once refactored and tested, move on to Game 2 (Gridlock) to deal with creating a more structured display output in Canvas capable of holding on to layers of items/tiles drawn onto the canvas.  Game mechanic should be centred around greed vs reward.
